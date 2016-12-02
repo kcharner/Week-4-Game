@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset=UTF-8>
+  <title>Crystal Collector</title>
+<!-- Link to reset CSS file -->
+<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+<!-- Link to bootstrap v 3.3.7 - validated 11/13/2016 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Montez|Poppins" rel="stylesheet">
+<!-- Link to jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div class="page-header">
+  <h1>Crystal Collector</h1>
+</div>
+<div class="col-lg-3" id="instructions">
+	<h2>Instructions</h2>
+	<p>You have been given a random number, and this is your target goal to win the game!</p>
+	<p>You have also been given 4 crystals. Each time you click on one, a certain number of points will be added to your total score.</p>
+	<p>To win the game, you must match your total score to the target number. You lose the game if your total score goes above this number.</p>
+	<p>The value of each crystal is hidden from you until you click on it, so pay attention!</p>
+	<p>Each time a new game begins, the value of each crystal will change. Good luck!</p>
+</div>
+
+<section id="gameTarget">
+  <h4>Game Target</h4>
+  <div id="target"></div>
+</section>
+
+<section id="currentScore">
+  <h4>Current Score</h4>
+  <div id="userCounter">0</div>
+</section>
+
+<section id="winsLosses">
+<h4>Scorecard</h4>
+<div id="wins">0</div>
+<div id="losses">0</div>
+</section>
+
+<button id="buttonClear">Restart</button>
+
+<div id="crystals"> 
+	<ul>
+		<img src="assets/images/crystalone.jpg" class="crystal" id="first">
+		<img src="assets/images/crystaltwo.png" class="crystal" id="second">
+		<img src="assets/images/crystalthree.jpg" class="crystal" id="third">
+		<img src="assets/images/crystalfour.jpg" class="crystal" id="fourth">
+	</ul>
+</div>
+
+<script type="text/javascript">
+
+//1. tell computer to select random # between 19 & 120, display it on page
+var targetNumber
+function gameTarget() {
+   targetNumber = Math.floor((Math.random() * 120) + 19)
+    $("#target").text(targetNumber);
+}
+gameTarget()
+
+//2. create 4 crystal variables
+var crystalOne;
+var crystalTwo;
+var crystalThree; 
+var crystalFour;
+
+//3. create a function to set the values of each crystal variable to a random number between 1 & 12
+function crystalValuesFN() {
+	crystalOne = Math.floor((Math.random() * 12) + 1) 
+		$("#first").attr("value", crystalOne);
+ 
+	crystalTwo = Math.floor((Math.random() * 12) + 1)
+		$("#second").attr("value", crystalTwo);
+
+	crystalThree = Math.floor((Math.random() * 12) + 1)
+		$("#third").attr("value", crystalThree);
+
+	crystalFour = Math.floor((Math.random() * 12) + 1)
+		$("#fourth").attr("value", crystalFour);
+    console.log(crystalOne, crystalTwo, crystalThree, crystalFour); 
+}
+crystalValuesFN();
+	//console.log(crystalOne, crystalTwo, crystalThree, crystalFour);
+	
+//4. create counter variable to track crystal totals and set to starting value of 0
+	var crystalCount = 0;
+
+//5. create 2 additional varialbles for counting wins and losses and set to starting value of 0
+var wins = 0;
+var losses = 0;
+
+//6. tell computer to evaluate crystalCount vs. target number on-click of each crystal, and update userCounter with new total value
+   $("#first").on("click", function() {
+    if (crystalCount < targetNumber) {
+       crystalCount = crystalOne + crystalCount;
+       $("#userCounter").text(crystalCount);
+       winLoss();
+     }
+   })
+
+   $("#second").on("click", function() {
+    if (crystalCount < targetNumber) {
+       crystalCount = crystalTwo + crystalCount;
+       $("#userCounter").text(crystalCount);
+       winLoss();
+     }
+   })
+   
+   $("#third").on("click", function() {
+    if (crystalCount < targetNumber) {
+       crystalCount = crystalThree + crystalCount;
+       $("#userCounter").text(crystalCount);
+       winLoss();
+     }
+   })
+
+   $("#fourth").on("click", function() {
+    if (crystalCount < targetNumber) {
+       crystalCount = crystalFour + crystalCount;
+       $("#userCounter").text(crystalCount);
+      winLoss();
+     }
+   })
+
+//7. create a function with conditional to evaluate wins and losses and update count
+function winLoss() {
+if (crystalCount == targetNumber) {
+      alert("Congratulations, you won!\nPress restart to play again.");
+      wins = wins + 1;
+      $("#wins").text("wins: " + wins);
+   }
+ 
+ else if (crystalCount > targetNumber){
+      alert("You lost! Better luck next time.\nPress restart to play again.");
+      losses = losses + 1;
+      $("#losses").text("losses: " + losses);
+   }
+ }
+
+//8. tell computer to reset the page
+   $('#buttonClear').on('click', function(){
+   	$("#userCounter").text("0");
+    gameTarget();
+    crystalCount = 0; 
+    crystalValuesFN();
+    });
+
+</script>
+
+</body>
+</html>
+

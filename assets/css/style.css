@@ -1,0 +1,80 @@
+#first {
+	float: left
+}
+
+#second {
+	float: left;
+}
+
+#third {
+	position: relative;
+	float: left;
+}
+
+#fourth {
+	position: relative;
+	float: left;
+}
+
+.page-header {
+	text-align: center;
+	font-family: Montez;
+	background-color: #D1C4E9;
+	margin-top: auto;
+	padding-top: 2px;
+	font-size: 100px;
+}
+
+h1 {
+	font-size: 50px;
+}
+
+#crystals {
+	margin-left: 200px;
+}
+
+img {
+	border: 1px solid #00FFFF;
+}
+
+h2 {
+	font-family: Poppins;
+	text-align: center;
+}
+
+h4 {
+	text-decoration: underline;
+	color: black;
+}
+
+section {
+	float: left;
+	font-size: 20px;
+	text-align: center;
+	color: #20B2AA;
+}
+
+#gameTarget {
+	margin-left: 60px;
+	margin-right:160px;
+}
+
+#currentScore {
+	margin-left: 10px;
+	margin-right: 190px;
+}
+
+#winsLosses {
+	margin-right: 150px;
+}
+
+#button {
+	margin-right: 180px;
+}
+
+
+
+
+
+
+
